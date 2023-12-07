@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.ashisoma.bankapp"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.ashisoma.bankapp"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -66,4 +66,11 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+//    SYSTEM UI CONTROLLER
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
+
+//    Material icons
+    implementation("androidx.compose.material:material-icons-extended:1.5.4")
+
 }
