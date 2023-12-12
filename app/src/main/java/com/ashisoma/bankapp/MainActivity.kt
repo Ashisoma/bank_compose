@@ -3,9 +3,12 @@ package com.ashisoma.bankapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -15,6 +18,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -57,6 +63,7 @@ private fun SetBarColor(color: Color){
 @Composable
 private fun HomeScreen() {
     Scaffold(
+        
         bottomBar = {
             BottomNavigationBar()
         }
@@ -67,7 +74,7 @@ private fun HomeScreen() {
                 .fillMaxSize()
                 .padding(padding)
         ) {
-            // WalletSection
+             WalletSection()
             Spacer(modifier = Modifier.height(16.dp))
             // CardsSection
             // FincanceSection
@@ -75,4 +82,32 @@ private fun HomeScreen() {
         }
 
     }
+}
+
+@Composable
+fun WalletSection() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+//        verticalArrangement = Arrangement.SpaceBetween
+    ) {
+        // Text
+        Text(
+            text = "Wallet",
+            style = MaterialTheme.typography.titleSmall
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = "$ 490.00",
+            style = MaterialTheme.typography.titleLarge
+        )
+    }
+
+
+}
+
+@Composable
+fun BalanceTextField(balance: Any, content: @Composable () -> Unit) {
+    TODO("Not yet implemented")
 }
