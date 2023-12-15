@@ -11,8 +11,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -86,23 +90,35 @@ private fun HomeScreen() {
 
 @Composable
 fun WalletSection() {
-    Column(
+    
+    Row(
+
         modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-//        verticalArrangement = Arrangement.SpaceBetween
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+
     ) {
-        // Text
-        Text(
-            text = "Wallet",
-            style = MaterialTheme.typography.titleSmall
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            text = "$ 490.00",
-            style = MaterialTheme.typography.titleLarge
-        )
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+//        verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            // Text
+            Text(
+                text = "Wallet",
+                style = MaterialTheme.typography.titleSmall
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                text = "$ 490.00",
+                style = MaterialTheme.typography.titleLarge
+            )
+        }
+        Icon(imageVector = Icons.Rounded.Search, contentDescription ="Search", tint= MaterialTheme.colorScheme.onBackground,)
     }
+
 
 
 }
