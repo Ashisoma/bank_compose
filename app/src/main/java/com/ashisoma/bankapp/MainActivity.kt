@@ -3,6 +3,7 @@ package com.ashisoma.bankapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -27,6 +30,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ashisoma.bankapp.ui.theme.BankAppTheme
@@ -63,7 +67,6 @@ private fun SetBarColor(color: Color){
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview
 @Composable
 private fun HomeScreen() {
     Scaffold(
@@ -88,21 +91,24 @@ private fun HomeScreen() {
     }
 }
 
+@Preview
 @Composable
 fun WalletSection() {
     
     Row(
 
         modifier = Modifier
+            .background(color = Color.White)
+            .padding(vertical = 8.dp)
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
+         Alignment.CenterVertically
 
     ) {
 
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
+                .padding(horizontal = 16.dp),
 //        verticalArrangement = Arrangement.SpaceBetween
         ) {
             // Text
@@ -110,13 +116,24 @@ fun WalletSection() {
                 text = "Wallet",
                 style = MaterialTheme.typography.titleSmall
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(10.dp))
             Text(
                 text = "$ 490.00",
                 style = MaterialTheme.typography.titleLarge
             )
         }
-        Icon(imageVector = Icons.Rounded.Search, contentDescription ="Search", tint= MaterialTheme.colorScheme.onBackground,)
+        Icon(
+            modifier = Modifier
+                .width(40.dp)
+                .height(40.dp)
+                .background(color = Color.Blue, shape = RoundedCornerShape(size = 12.dp))
+                .padding(2.dp)
+
+
+            ,
+            imageVector = Icons.Rounded.Search,
+            contentDescription ="Search",
+            )
     }
 
 
