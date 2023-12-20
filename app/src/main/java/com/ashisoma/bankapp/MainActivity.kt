@@ -30,6 +30,7 @@ import androidx.compose.material.icons.rounded.InsertChart
 import androidx.compose.material.icons.rounded.Save
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material.icons.rounded.StarBorder
+import androidx.compose.material.icons.rounded.ViewKanban
 import androidx.compose.material.icons.rounded.Wallet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -57,6 +58,7 @@ import com.ashisoma.bankapp.data.FinanceModel
 import com.ashisoma.bankapp.ui.theme.BankAppTheme
 import com.ashisoma.bankapp.ui.theme.BlueEnd
 import com.ashisoma.bankapp.ui.theme.BlueStart
+import com.ashisoma.bankapp.ui.theme.GreenStart
 import com.ashisoma.bankapp.ui.theme.OrangeEnd
 import com.ashisoma.bankapp.ui.theme.OrangeStart
 import com.ashisoma.bankapp.ui.theme.PurpleEnd
@@ -111,17 +113,16 @@ private fun HomeScreen() {
         ) {
              WalletSection()
             Spacer(modifier = Modifier.height(16.dp))
-             CardsSection()
+            CardsSection()
             Spacer(modifier = Modifier.height(16.dp))
-
             Text(
-                text = "Wallet",
+                text = "Finance",
                 style = MaterialTheme.typography.titleLarge.copy(fontSize = 20.sp, fontWeight = FontWeight.W600,),
                 color = Color.Black,
                 modifier = Modifier.padding(start = 16.dp)
             )
             Spacer(modifier = Modifier.height(8.dp))
-             FinanceSection()
+            FinanceSection()
             // Currencies Section
         }
 
@@ -300,13 +301,13 @@ val finaceList: List<FinanceModel> = listOf(
         id = 1,
         title = "Finance\nAnalysis",
         icon = Icons.Rounded.InsertChart,
-        clr = BlueStart
+        clr = PurpleStart
     ),
     FinanceModel(
         id = 1,
         title = "My\nSavings",
-        icon = Icons.Rounded.Save,
-        clr = BlueStart
+        icon = Icons.Rounded.ViewKanban,
+        clr = GreenStart
     ),
 )
 
