@@ -42,8 +42,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.ashisoma.bankapp.data.CardItemModel
 import com.ashisoma.bankapp.ui.theme.BankAppTheme
 import com.ashisoma.bankapp.ui.theme.BlueEnd
@@ -103,11 +106,25 @@ private fun HomeScreen() {
              WalletSection()
             Spacer(modifier = Modifier.height(16.dp))
              CardsSection()
-            // FincanceSection
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(
+                text = "Wallet",
+                style = MaterialTheme.typography.titleLarge.copy(fontSize = 20.sp, fontWeight = FontWeight.W600,),
+                color = Color.Black,
+                modifier = Modifier.padding(start = 16.dp)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+             FinanceSection()
             // Currencies Section
         }
 
     }
+}
+
+@Composable
+fun FinanceSection() {
+    TODO("Not yet implemented")
 }
 
 @Composable
