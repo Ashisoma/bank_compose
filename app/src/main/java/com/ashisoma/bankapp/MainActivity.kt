@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +18,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -41,8 +44,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ashisoma.bankapp.data.CardItemModel
 import com.ashisoma.bankapp.ui.theme.BankAppTheme
+import com.ashisoma.bankapp.ui.theme.BlueEnd
+import com.ashisoma.bankapp.ui.theme.BlueStart
+import com.ashisoma.bankapp.ui.theme.OrangeEnd
+import com.ashisoma.bankapp.ui.theme.OrangeStart
 import com.ashisoma.bankapp.ui.theme.PurpleEnd
+import com.ashisoma.bankapp.ui.theme.PurpleGrey80
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 class MainActivity : ComponentActivity() {
@@ -76,6 +85,7 @@ private fun SetBarColor(color: Color){
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
+@Preview
 @Composable
 private fun HomeScreen() {
     Scaffold(
@@ -134,10 +144,8 @@ fun WalletSection() {
             modifier = Modifier
                 .width(40.dp)
                 .height(40.dp)
-                .background(color = Color.Blue, shape = RoundedCornerShape(size = 12.dp))
+                .background(color = PurpleGrey80, shape = RoundedCornerShape(size = 12.dp))
                 .padding(2.dp)
-
-
             ,
             imageVector = Icons.Rounded.Search,
             contentDescription ="Search",
@@ -148,20 +156,52 @@ fun WalletSection() {
 
 }
 
+val myItemList: List<CardItemModel> = listOf(
+    CardItemModel(
+        id = 1,
+        title = "Business",
+        imageRes = R.drawable.ic_visa,
+        gradientColors = listOf(PurpleStart, PurpleEnd)
+    ),
+    CardItemModel(
+        id = 1,
+        title = "School",
+        imageRes = R.drawable.ic_mastercard,
+        gradientColors = listOf(BlueStart, BlueEnd)
+    ),
+    CardItemModel(
+        id = 1,
+        title = "Home",
+        imageRes = R.drawable.ic_visa,
+        gradientColors = listOf(OrangeStart, OrangeEnd)
+    ),
+    // Add more items as needed
+)
 //@Preview
 @Composable
 fun CardsSection() {
-    TODO("Not yet implemented")
+    LazyRow(
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ){
+
+        this.items(myItemList.size) { itemId ->
+            val item = myItemList[itemId]
+            CardItem(item)
+        }
+    }
 }
 
-@Preview
+
+
+//@Preview
 @Composable
-fun CardItem() {
+fun CardItem(item: CardItemModel) {
     val gradientColors = listOf(PurpleStart, PurpleEnd)
     val gradientBrush = Brush.linearGradient(
-        colors = gradientColors
+        colors = item.gradientColors
     )
-    Box(
+    Column(
         modifier = Modifier
             .height(150.dp)
             .width(250.dp)
@@ -172,17 +212,37 @@ fun CardItem() {
     ) {
 
         Image(
-            painter =  painterResource(id = R.drawable.ic_visa), // Replace with your image resource
+            painter =  painterResource(id = item.imageRes), // Replace with your image resource
             contentDescription = null, // Provide content description as needed
             modifier = Modifier
-                .align(Alignment.TopStart)
                 .padding(5.dp)
-                .height(50.dp) // Adjust the height as needed
-                .width(100.dp) // Adjust the height as needed
+                .height(40.dp) // Adjust the height as needed
+                .width(80.dp) // Adjust the height as needed
                 .background(color = Color.Transparent), // Optional: Add a background to the image
             contentScale = ContentScale.Crop // Adjust content scale as needed
-        )    }
-
+        )
+        Text(
+            text = item.title,
+            style = MaterialTheme.typography.titleMedium,
+            color = Color.White,
+            modifier = Modifier.
+            padding(start = 15.dp, top= 10.dp)
+        )
+        Text(
+            text = "$ 14.0",
+            style = MaterialTheme.typography.titleLarge,
+            color = Color.White,
+            modifier = Modifier.
+            padding(start = 15.dp)
+        )
+        Text(
+            text = "7483 2483 3874 3843",
+            style = MaterialTheme.typography.titleMedium,
+            color = Color.White,
+            modifier = Modifier.
+            padding(start = 15.dp, top = 10.dp)
+        )
+    }
 }
 
 
