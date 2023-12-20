@@ -26,7 +26,11 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.InsertChart
+import androidx.compose.material.icons.rounded.Save
 import androidx.compose.material.icons.rounded.Search
+import androidx.compose.material.icons.rounded.StarBorder
+import androidx.compose.material.icons.rounded.Wallet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -41,6 +45,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -48,6 +53,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ashisoma.bankapp.data.CardItemModel
+import com.ashisoma.bankapp.data.FinanceModel
 import com.ashisoma.bankapp.ui.theme.BankAppTheme
 import com.ashisoma.bankapp.ui.theme.BlueEnd
 import com.ashisoma.bankapp.ui.theme.BlueStart
@@ -122,9 +128,23 @@ private fun HomeScreen() {
     }
 }
 
+
 @Composable
 fun FinanceSection() {
-    TODO("Not yet implemented")
+
+    LazyRow(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.White),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ){
+
+        this.items(finaceList.size) { itemId ->
+            val item = finaceList[itemId]
+            FinanceItem(item)
+        }
+    }
 }
 
 @Composable
@@ -259,6 +279,69 @@ fun CardItem(item: CardItemModel) {
             modifier = Modifier.
             padding(start = 15.dp, top = 10.dp)
         )
+    }
+}
+
+
+val finaceList: List<FinanceModel> = listOf(
+    FinanceModel(
+        id = 1,
+        title = "My\nBusiness",
+        icon = Icons.Rounded.StarBorder,
+        clr = OrangeStart
+    ),
+    FinanceModel(
+        id = 1,
+        title = "My\nWallet",
+        icon = Icons.Rounded.Wallet,
+        clr = BlueStart
+    ),
+    FinanceModel(
+        id = 1,
+        title = "Finance\nAnalysis",
+        icon = Icons.Rounded.InsertChart,
+        clr = BlueStart
+    ),
+    FinanceModel(
+        id = 1,
+        title = "My\nSavings",
+        icon = Icons.Rounded.Save,
+        clr = BlueStart
+    ),
+)
+
+
+@Composable
+fun FinanceItem(item: FinanceModel) {
+
+    Column(
+        modifier = Modifier
+            .height(150.dp)
+            .width(140.dp)
+            .clip(MaterialTheme.shapes.medium)
+            .background(
+                color = PurpleGrey80,
+            )
+    ) {
+
+        Icon(imageVector = item.icon, contentDescription = null,
+            modifier = Modifier
+                .padding(8.dp)
+                .size(50.dp)
+                .clip(MaterialTheme.shapes.large)
+                .background(color = item.clr)
+
+                .padding(5.dp),
+            tint = Color.White
+        )
+        Text(
+            text = item.title,
+            style = MaterialTheme.typography.titleMedium,
+            color = Color.Black,
+            modifier = Modifier.
+            padding(start = 15.dp, top= 10.dp)
+        )
+
     }
 }
 
